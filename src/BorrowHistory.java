@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 public class BorrowHistory {
     private ArrayList<Book> books;
 
@@ -14,6 +13,9 @@ public class BorrowHistory {
         books.remove(book);
     }
     public ArrayList<Book> getBooks(){
-        return books;
+        return new ArrayList<>(books);
+    }
+    public boolean contains(Book book){
+        return books.contains(book);
     }
 }
