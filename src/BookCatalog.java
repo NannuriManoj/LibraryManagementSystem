@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 public class BookCatalog implements Searchable{
     private HashMap<String,Book> books;
@@ -48,5 +47,14 @@ public class BookCatalog implements Searchable{
     }
     public Book findByIsbn(String isbn){
         return books.get(isbn);
+    }
+
+    public TreeSet<String> getAllGenre(){
+        TreeSet<String> genres = new TreeSet<>();
+
+        for (Book book : books.values()){
+            genres.add(book.getGenre());
+        }
+        return genres;
     }
 }

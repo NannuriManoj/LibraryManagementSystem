@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Main {
     public static void main(String[] args) {
         LibrarySystem library = new LibrarySystem();
@@ -23,5 +26,13 @@ public class Main {
 
         System.out.println(member1.calculateFine(10));
         library.getBookCatalog().searchByGenre("romantic").forEach(book -> System.out.println(book));
+
+        BookCatalog catalog = new BookCatalog();
+        catalog.addBook(new Book("Clean Code", "Martin", "Tech", "978-001", 2008));
+        catalog.addBook(new Book("The Pragmatic Programmer", "Hunt", "Tech", "978-002", 1999));
+        catalog.addBook(new Book("Dune", "Herbert", "Sci-Fi", "978-003", 1965));
+        catalog.addBook(new Book("Foundation", "Asimov", "Sci-Fi", "978-004", 1951));
+
+        System.out.println(catalog.getAllGenre());
     }
 }
