@@ -39,24 +39,24 @@ public class LibrarySystem {
                 return member;
             }
         }
-        return null;
+        throw new MemberNotFoundException("Member with ID " + memberId + " not found");
     }
 
     public void borrowBook(Member member, String isbn){
         Book book = bookCatalog.findByIsbn(isbn);
-        if (book == null){
-            System.out.println("Book not found");
-            return;
-        }
+//        if (book == null){
+//            System.out.println("Book not found");
+//            return;
+//        }
         member.borrowBook(book);
     }
 
     public void returnBook(Member member, String isbn) {
         Book book = bookCatalog.findByIsbn(isbn);
-        if (book == null) {
-            System.out.println("Book not found.");
-            return;
-        }
+//        if (book == null) {
+//            System.out.println("Book not found.");
+//            return;
+//        }
         member.returnBook(book);
     }
 }
