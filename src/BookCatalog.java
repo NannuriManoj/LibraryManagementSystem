@@ -46,7 +46,7 @@ public class BookCatalog implements Searchable{
         books.put(book.getIsbn(), book);
     }
     public void removeBook(Book book){
-        if (books.containsKey(book.getIsbn())){
+        if (!books.containsKey(book.getIsbn())){
             throw new BookNotFoundException("Book with ISBN: "+ book.getIsbn() + "not found");
         }
         books.remove(book.getIsbn());
@@ -56,7 +56,7 @@ public class BookCatalog implements Searchable{
         if (book == null){
             throw new BookNotFoundException("Book with ISBN: "+ isbn + "not found");
         }
-        return books.get(isbn);
+        return book;
     }
 
     public TreeSet<String> getAllGenre(){

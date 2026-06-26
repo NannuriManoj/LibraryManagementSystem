@@ -43,20 +43,20 @@ public class LibrarySystem {
     }
 
     public void borrowBook(Member member, String isbn){
-        Book book = bookCatalog.findByIsbn(isbn);
-//        if (book == null){
-//            System.out.println("Book not found");
-//            return;
-//        }
-        member.borrowBook(book);
+        try {
+            Book book = bookCatalog.findByIsbn(isbn);
+            member.borrowBook(book);
+        }catch (BookNotFoundException bfe){
+            System.out.println("Error: "+ bfe.getMessage());
+        }
     }
 
     public void returnBook(Member member, String isbn) {
-        Book book = bookCatalog.findByIsbn(isbn);
-//        if (book == null) {
-//            System.out.println("Book not found.");
-//            return;
-//        }
-        member.returnBook(book);
+        try {
+            Book book = bookCatalog.findByIsbn(isbn);
+            member.returnBook(book);
+        } catch (BookNotFoundException bfe){
+            System.out.println("Error "+ bfe.getMessage());
+        }
     }
 }
