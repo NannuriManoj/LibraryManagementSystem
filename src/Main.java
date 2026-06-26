@@ -34,5 +34,23 @@ public class Main {
         catalog.addBook(new Book("Foundation", "Asimov", "Sci-Fi", "978-004", 1951));
 
         System.out.println(catalog.getAllGenre());
+
+        try {
+            catalog.findByIsbn("123-321");
+        } catch (BookNotFoundException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        try {
+            catalog.addBook(new Book("Clean Code", "Martin", "Tech", "978-001", 2008));
+        } catch (BookAlreadyExistsException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        try {
+            library.findMemberById("102");
+        } catch (MemberNotFoundException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }
