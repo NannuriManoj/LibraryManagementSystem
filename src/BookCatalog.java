@@ -47,14 +47,14 @@ public class BookCatalog implements Searchable{
     }
     public void removeBook(Book book){
         if (!books.containsKey(book.getIsbn())){
-            throw new BookNotFoundException("Book with ISBN: "+ book.getIsbn() + "not found");
+            throw new BookNotFoundException("Book with ISBN: "+ book.getIsbn() + " not found");
         }
         books.remove(book.getIsbn());
     }
     public Book findByIsbn(String isbn){
         Book book = books.get(isbn);
         if (book == null){
-            throw new BookNotFoundException("Book with ISBN: "+ isbn + "not found");
+            throw new BookNotFoundException("Book with ISBN: "+ isbn + " not found");
         }
         return book;
     }
