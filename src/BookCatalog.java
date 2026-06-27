@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class BookCatalog implements Searchable{
     private HashMap<String,Book> books;
@@ -8,35 +9,26 @@ public class BookCatalog implements Searchable{
     }
     @Override
     public ArrayList<Book> searchByTitle(String title) {
-        ArrayList<Book> result = new ArrayList<>();
-        for (Book book : books.values()){
-            if(book.getTitle().toLowerCase().contains(title.toLowerCase())){
-                result.add(book);
-            }
-        }
-        return result;
+        return books.values().stream()
+                .filter(book -> book.getTitle().toLowerCase()
+                        .contains(title.toLowerCase()))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     @Override
     public ArrayList<Book> searchByAuthor(String author) {
-        ArrayList<Book> result = new ArrayList<>();
-        for(Book book : books.values()){
-            if (book.getAuthor().toLowerCase().contains(author.toLowerCase())){
-                result.add(book);
-            }
-        }
-        return result;
+        return books.values().stream()
+                .filter(book -> book.getAuthor().toLowerCase()
+                        .contains(author.toLowerCase()))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     @Override
     public ArrayList<Book> searchByGenre(String genre) {
-        ArrayList<Book> result = new ArrayList<>();
-        for (Book book : books.values()){
-            if (book.getGenre().toLowerCase().contains(genre.toLowerCase())){
-                result.add(book);
-            }
-        }
-        return result;
+        return books.values().stream()
+                .filter(book -> book.getGenre().toLowerCase()
+                        .contains(genre.toLowerCase()))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public void addBook(Book book){
@@ -60,11 +52,8 @@ public class BookCatalog implements Searchable{
     }
 
     public TreeSet<String> getAllGenre(){
-        TreeSet<String> genres = new TreeSet<>();
-
-        for (Book book : books.values()){
-            genres.add(book.getGenre());
-        }
-        return genres;
+        return books.values().stream()
+                .map(Book::getGenre)
+                .collect(Collectors.toCollection(TreeSet::new));
     }
 }
