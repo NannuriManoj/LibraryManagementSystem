@@ -51,6 +51,10 @@ public class BookCatalog implements Searchable{
         return book;
     }
 
+    public Optional<Book> findByIsbnSafe(String isbn){
+        return Optional.ofNullable(books.get(isbn));
+    }
+
     public TreeSet<String> getAllGenre(){
         return books.values().stream()
                 .map(Book::getGenre)

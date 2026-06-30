@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.Optional;
 import java.util.Queue;
 
 public class Main {
@@ -35,6 +36,13 @@ public class Main {
 
         System.out.println(catalog.getAllGenre());
 
+        Optional<Book> found = catalog.findByIsbnSafe("978-001");
+        found.ifPresent(book -> System.out.println("Found "+ book.getTitle()));
+
+        Optional<Book> notFound = catalog.findByIsbnSafe("999-999");
+        notFound.ifPresent(book -> System.out.println("Not Found "+ book.getTitle()));
+        System.out.println("Result " + notFound.orElse(null));
+
         try {
             catalog.findByIsbn("123-321");
         } catch (BookNotFoundException e) {
@@ -53,4 +61,5 @@ public class Main {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
 }
